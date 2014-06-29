@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
@@ -25,7 +24,10 @@ import java.util.List;
 public class main extends Activity {
     final String baseUrl = "http://192.168.168.101:4646/pillarNewspaper/";
     public final static String BASE_URL = "net.bibbs.NewspaperAdManager.BASEURL";
-    private ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice);
+    private ArrayAdapter<String> listAdapter;
+    private ArrayList newspaperResults = new ArrayList();
+    private ArrayList advertisementResults = new ArrayList();
+    private ListView lv1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,34 @@ public class main extends Activity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+/*
+        listAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice);
+        ListView listView = (ListView) findViewById(R.id.mainListView);
+        newspaperResults.add( new Newspaper("Dummy","0"));
+        ArrayList image_details = getNewspaperListData();
+*/
+
+       // listView.setAdapter(new NewspaperListAdapter(this, image_details));
+/*
+        lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /
+
+            @Override
+            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+                Object o = lv1.getItemAtPosition(position);
+                Newspaper newsData = (Newspaper) o;
+                Toast.makeText(main.this, "Selected :" + " " + newsData, Toast.LENGTH_LONG).show();
+            }
+
+        });
+*/
+    }
+    private ArrayList getNewspaperListData() {
+        return newspaperResults;
+    }
+
+    private ArrayList getAdvertisementData() {
+        return advertisementResults;
     }
 
     @Override
@@ -112,24 +142,16 @@ public class main extends Activity {
 
         @Override
         protected void onPostExecute(Newspaper[] newspapers) {
-            ListView newspaperListView = (ListView) findViewById(R.id.listView);
-            List<String> newspaperList = new ArrayList<String>();
+           ListView newspaperListView = (ListView) findViewById(R.id.mainListView);
+           List<String> newspaperList = new ArrayList<String>();
 
-
-
+           newspaperResults.clear();
            for(int i = 0; i < newspapers.length; i++){
-                newspaperList.add(newspapers[i].getNewspaperName());
+                newspaperResults.add(newspapers[i]);
             }
 
-            newspaperListView.setAdapter(listAdapter);
-            //listAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, android.R.id.text1, newspaperList);
-            //newspaperListView.setAdapter(listAdapter);
-            /*
-            TextView greetingIdText = (TextView) findViewById(R.id.id_value);
-            TextView greetingContentText = (TextView) findViewById(R.id.content_value);
-            greetingIdText.setText(newspapers[0].getId());
-            greetingContentText.setText(newspapers[0].getNewspaperName());
-            */
+            ArrayList image_details = getNewspaperListData();
+            newspaperListView.setAdapter(new NewspaperListAdapter(main.this, image_details));
         }
 
     }
@@ -150,11 +172,14 @@ public class main extends Activity {
 
         @Override
         protected void onPostExecute(Advertisement[] advertisements) {
-            TextView greetingIdText = (TextView) findViewById(R.id.id_value);
-            TextView greetingContentText = (TextView) findViewById(R.id.content_value);
-
-            greetingIdText.setText(advertisements[0].getId());
-            greetingContentText.setText(advertisements[0].getAdvertisementName());
+            advertisementResults.clear();
+            for(int i = 0; advertisements != null && i < advertisements.length; i++ ){
+                advertisementResults.add(advertisements[i]);
+            }
+            ListView advertisementListView = (ListView) findViewById(R.id.mainListView);
+            List<String> advertisementList = new ArrayList<String>();
+            ArrayList image_details = getAdvertisementData();
+            advertisementListView.setAdapter(new AdvertisementListAdapter(main.this, image_details));
         }
 
     }
