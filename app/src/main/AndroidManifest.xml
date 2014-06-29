@@ -18,6 +18,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AddNewspaper"
+            android:label="@string/title_activity_add_newspaper"
+            android:parentActivityName=".main" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="net.bibbs.newspaperadmanager.main" />
+        </activity>
+        <activity
+            android:name=".AddAdvertisement"
+            android:label="@string/title_activity_add_advertisement"
+            android:parentActivityName=".main" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="net.bibbs.newspaperadmanager.main" />
+        </activity>
     </application>
 
 </manifest>

@@ -12,5 +12,8 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_main_newspaper_manager">Newspaper Ad Manager</string>
     <string name="action_listAds">List Ads</string>
+    <string name="action_refresh">List Newspapers</string>
+    <string name="title_activity_add_newspaper">Add Newspaper</string>
+    <string name="title_activity_add_advertisement">Add Advertisement</string>
 
 </resources>

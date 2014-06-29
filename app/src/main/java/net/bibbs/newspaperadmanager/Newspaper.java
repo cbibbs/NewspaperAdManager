@@ -17,4 +17,8 @@ public class Newspaper {
     public String getId() {
         return id;
     }
+
+    public void setNewspaperName(String name) {
+        this.newspaperName = name;
+    }
 }

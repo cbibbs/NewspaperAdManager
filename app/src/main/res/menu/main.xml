@@ -3,9 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity" >
 
-    <item android:id="@+id/action_refresh"
-        android:title="@string/action_refresh"
+    <item android:id="@+id/action_list_newspapers"
+        android:title="List Newspapers"
         android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item android:id="@+id/action_list_advertisements"
+        android:title="List Ads"
+        android:orderInCategory="200"
+        android:showAsAction="never" />
+    <item android:id="@+id/action_add_newspaper"
+        android:title="Add Newspaper"
+        android:orderInCategory="300"
+        android:showAsAction="never" />
+    <item android:id="@+id/action_add_advertisement"
+        android:title="Add Advertisement"
+        android:orderInCategory="300"
         android:showAsAction="never" />
 
 </menu>
